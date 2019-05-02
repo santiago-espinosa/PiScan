@@ -1,4 +1,5 @@
 #!/bin/bash
+#check if there are any arguments and exit otherwise
 [ "$#" -ne 1 ] && exit
 
 #Scan for nearby devices. Exclude anything with wlan.tag (APs)
