@@ -22,7 +22,7 @@ do
             sudo ip link set $i up;
         fi
 
-        #run scripts in the background and continue execution
+        #run scan scripts in the background and continue execution
         nohup ./startup.sh $i &>/dev/null &;
         nohup ./hasher.sh $i &>/dev/null &;
 
