@@ -8,10 +8,10 @@ while :
 do
     for i in $A; do
 
-        #check if dir exists
-        if [ ! -d "data/$i" ]; then
-            mkdir data/$1;
-            mkdir temp/$1;
+        #create dir if it downad't exist
+        if [ ! -d "$INSTALLDIR/data/$i" ]; then
+            mkdir $INSTALLDIR/data/$1;
+            mkdir $INSTALLDIR/temp/$1;
         fi
 
         #Set given wireless interface to monitor mode if not the case
@@ -23,8 +23,8 @@ do
         fi
 
         #run scan scripts in the background and continue execution
-        nohup ./startup.sh $i &>/dev/null &;
-        nohup ./hasher.sh $i &>/dev/null &;
+        nohup ./$INSTALLDIR/driver.sh $i &>/dev/null &;
+        nohup ./$INSTALLDIR/hasher.sh $i &>/dev/null &;
 
         sleep 15;
     done
