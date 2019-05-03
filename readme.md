@@ -1,6 +1,6 @@
-##Incomplete PiScan Application
+## Incomplete PiScan Application
 
-###Current structure when installed:
+### Current structure when installed:
 
 :file_folder: **install Dir (/usr/bin/ by default)**
 Contains all scripts in this structure:
@@ -17,6 +17,6 @@ Contains all scripts in this structure:
   * PiScan_service_overwatch.sh
   * PiScan.service
 
-* :file_folder: **/lib/systemd/system/** | contains systemd description files
+:file_folder: **System service dir (must be /lib/systemd/system/)** | contains systemd description files
   * PiScan_service_overwatch.service
   * PiScan.service
