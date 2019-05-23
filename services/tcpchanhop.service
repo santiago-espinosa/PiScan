@@ -1,0 +1,14 @@
+[Unit]
+Description=Keeps mon0 channel hopping for tcpdump
+After=tcpdumpsetup.service
+
+[Service]
+TimeoutStartSec=infinity
+
+ExecStart=/usr/local/bin/tcpdumpchanhop.sh
+
+Restart=always
+RestartSec=0
+
+[Install]
+WantedBy=multi-user.target  
