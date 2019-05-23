@@ -1,9 +1,0 @@
-[Unit]
-Description=System script to run PiScan service
-
-[Service]
-Type=forking
-ExecStart=/usr/bin/startup.sh
-
-[Install]
-WantedBy=multi-user.target

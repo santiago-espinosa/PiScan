@@ -1,9 +1,0 @@
-[Unit]
-Description=Makes sure the correct scripts are running
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/PiScan_service_overwatch.sh
-
-[Install]
-WantedBy=multi-user.target
