@@ -1,0 +1,14 @@
+[Unit]
+Description=Runs tcpdump
+After=tcpdumpsetup.service tcpdumpchanhop.service
+
+[Service]
+TimeoutStartSec=infinity
+
+ExecStart=/usr/local/bin/runtcpdump.sh
+
+Restart=always
+RestartSec=0
+
+[Install]
+WantedBy=multi-user.target  

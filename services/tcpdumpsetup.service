@@ -1,0 +1,9 @@
+[Unit]
+Description=Put interface in monitor mode and create folder for saving
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/tcpdumpsetup.sh
+
+[Install]
+WantedBy=multi-user.target  
