@@ -10,12 +10,12 @@ if [[ "$D" == *"managed"* ]]; then
     sudo ip link set wlan0 up;
 fi
 
-# Create a folder for this boot session
-#rootfolder=/home/pi/logs/day
-#i=0
-#while [[ -e $rootfolder$i ]] ; do
-#    let i++
-#done
-#folder=$rootfolder$i
+#Create a folder for this boot session
+rootfolder=/home/pi/piScan/logs/day
+i=0
+while [[ -e $rootfolder$i ]] ; do
+    let i++
+done
+folder=$rootfolder$i
 
-#mkdir $folder
+mkdir $folder
