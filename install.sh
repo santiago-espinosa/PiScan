@@ -15,27 +15,23 @@ sudo chmod 755 $CDIR/bash/*
 echo "intalling tcpdump"
 sudo apt-get install tcpdump
 
-#echo "Installing files and systemd service"
-#setting API key?
 
 #moving files, creating folders and setting API key (mac address)
+echo "Installing files and systemd service"
 sudo mkdir $ISTALLDIR/PiScan
-sudo cp $CDIR/scripts/*.sh $ISTALLDIR/PiScan
-mkdir $ISTALLDIR/info $ISTALLDIR/data $ISTALLDIR/temp
-touch $ISTALLDIR/info/API.key
-echo "$hostname" > $ISTALLDIR/info/API.key
+sudo mkdir $ISTALLDIR/PiScan/info $ISTALLDIR/PiScan/log /home/pi/PiScan/data
+sudo mkdir $ISTALLDIR/PiScan/bin $ISTALLDIR/PiScan/bin/scripts $ISTALLDIR/PiScan/bin/exec
 
-#create folders corresponding to the interfaces
-for i in $INTERFACES; do
-    if [ ! -d "$INSTALLDIR/data/$i" ]; then
-        mkdir $INSTALLDIR/data/$1;
-        mkdir $INSTALLDIR/temp/$1;
-    fi
-done
+sudo cp $CDIR/scripts/*.sh $ISTALLDIR/PiScan/bin/scripts
+
+#touch $ISTALLDIR/info/API.key
+#echo "$hostname" > $ISTALLDIR/info/API.key
+
+#g++ $CDIR/c++/hasher.cpp -o $ISTALLDIR/PiScan/bin/exec
+
 
 #Installing and starting systemd service
 sudo cp $ISTALLDIR/services/*.service /lib/systemd/system/
-
 
 #start scripts
 sudo systemctl daemon-reload
@@ -44,15 +40,14 @@ sudo systemctl start tcpdumpchanhop.service
 sudo systemctl start tcpdump.service
 
 #checking if service has started
-`pgrep PiScan >/dev/null 2>&1`
+`pgrep tcpdumpsetup >/dev/null 2>&1`
 STATS=$(echo $?)
 if [[  $STATS == 1  ]]; then
-    echo "Service failed to start"
-    exit -1;
-else
-    echo "Done!"
-    read -p "Remove pre-installation files? (y)" answer
-    if [ "$answer" == 'y']; then
-        rm -r $CDIR/
-    fi
+    echo "Services failed to start"
+fi
+
+echo "Install finished"
+read -p "Remove pre-installation files? (y/n)" answer
+if [ "$answer" == 'y']; then
+    rm -r $CDIR/
 fi
