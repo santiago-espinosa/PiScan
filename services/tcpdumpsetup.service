@@ -3,7 +3,7 @@ Description=Put interface in monitor mode and create folder for saving data
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/tcpdumpsetup.sh
+ExecStart=/usr/local/bin/PiScan/tcpdumpsetup.sh
 
 [Install]
 WantedBy=multi-user.target

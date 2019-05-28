@@ -5,10 +5,10 @@ After=tcpdumpsetup.service
 [Service]
 TimeoutStartSec=infinity
 
-ExecStart=/usr/local/bin/tcpdumpchanhop.sh
+ExecStart=/usr/local/bin/PiScan/tcpdumpchanhop.sh
 
 Restart=always
 RestartSec=0
 
 [Install]
-WantedBy=multi-user.target  
+WantedBy=multi-user.target
