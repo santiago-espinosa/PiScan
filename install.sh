@@ -5,33 +5,33 @@ HOSTNAME=$(ifconfig -a | awk '/^[a-z]/ { iface=$1; mac=$NF; next } /inet addr:/ 
 INTERFACES=$(iwconfig 2>/dev/null | grep "wlan" | cut -d ' ' -f1)
 
 echo "Updating system"
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update -qq -y >> /dev/null
+sudo apt-get upgrade -qq -y >> /dev/null
 
 echo "Making sure scripts are executable"
-sudo chmod 755 $CDIR/bash/*
+sudo chmod 755 $CDIR/bash/*.sh
 
 #install dependent programs
 echo "intalling tcpdump"
-sudo apt-get install tcpdump
+sudo apt-get install tcpdump >> /dev/null
 
 
 #moving files, creating folders and setting API key (mac address)
 echo "Installing files and systemd service"
 sudo mkdir $ISTALLDIR/PiScan
-sudo mkdir $ISTALLDIR/PiScan/info $ISTALLDIR/PiScan/log /home/pi/PiScan/data
-sudo mkdir $ISTALLDIR/PiScan/bin $ISTALLDIR/PiScan/bin/scripts $ISTALLDIR/PiScan/bin/exec
+sudo mkdir $ISTALLDIR/PiScan/info $ISTALLDIR/PiScan/logs $ISTALLDIR/PiScan/data
+sudo mkdir $ISTALLDIR/PiScan/bin $ISTALLDIR/PiScan/bin/scripts #$ISTALLDIR/PiScan/bin/exec
 
-sudo cp $CDIR/scripts/*.sh $ISTALLDIR/PiScan/bin/scripts
+sudo cp $CDIR/scripts/*.sh $ISTALLDIR/PiScan/bin/scripts/
 
-#touch $ISTALLDIR/info/API.key
+#touch $ISTALLDIR/PiScan/info/API.key
 #echo "$hostname" > $ISTALLDIR/info/API.key
 
 #g++ $CDIR/c++/hasher.cpp -o $ISTALLDIR/PiScan/bin/exec
 
 
 #Installing and starting systemd service
-sudo cp $ISTALLDIR/services/*.service /lib/systemd/system/
+sudo cp $CDIR/services/*.service /lib/systemd/system/
 
 #start scripts
 sudo systemctl daemon-reload
