@@ -10,10 +10,10 @@ delete:
 	rm -r $CDIR/
 
 install:
-	if [ ! -w /etc/init.d ]; then echo "Make must be run as root in order to install."; exit -1; fi
+	if [ ! -w /etc/init.d ]; then echo "Make must be run as root in order to install as system services."; exit -1; fi
 	echo ""
-	echo "Install dir: $INSTALLDIR"
-	echo "Current dir: $CDIR"
+	echo "Install dir: $INSTALLDIR/PiScan"
+	echo "Current dir: $CDIR/"
 	read -p "Press Enter to continue or Ctrl-C to cancel"
 	sudo ./install.sh $INSTALLDIR $CDIR
 
