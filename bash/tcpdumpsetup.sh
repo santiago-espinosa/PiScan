@@ -11,7 +11,7 @@ if [[ "$D" == *"managed"* ]]; then
 fi
 
 #Create a folder for this boot session
-rootfolder=/home/pi/piScan/logs/day
+rootfolder=/usr/bin/piScan/logs/day/
 i=0
 while [[ -e $rootfolder$i ]] ; do
     let i++
