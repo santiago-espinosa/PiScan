@@ -9,3 +9,5 @@ if [[ "$D" == *"managed"* ]]; then
     sudo iw wlan0 set monitor control;
     sudo ip link set wlan0 up;
 fi
+
+mkdir /tmp/PiScan
