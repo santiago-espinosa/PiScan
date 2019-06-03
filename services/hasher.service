@@ -1,11 +1,11 @@
 [Unit]
-Description=Runs tcpdump
+Description=Runs hasher
 After=tcpdumpsetup.service tcpdumpchanhop.service
 
 [Service]
 TimeoutStartSec=infinity
 
-ExecStart=/usr/bin/PiScan/runtcpdump.sh
+ExecStart=/usr/bin/PiScan/hasher.sh
 
 Restart=always
 RestartSec=0

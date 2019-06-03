@@ -1,8 +1,8 @@
 #/!bin/bash
 ISTALLDIR=$1
 CDIR=$2
-HOSTNAME=$(ifconfig -a | awk '/^[a-z]/ { iface=$1; mac=$NF; next } /inet addr:/ { print iface, mac }')
-INTERFACES=$(iwconfig 2>/dev/null | grep "wlan" | cut -d ' ' -f1)
+
+if [ ! -w /etc/init.d ]; then echo "Make must be run as root in order to install as system services."; exit -1; fi
 
 echo "Updating system"
 sudo apt-get update -qq -y >> /dev/null
@@ -13,20 +13,19 @@ sudo chmod 755 $CDIR/bash/*.sh
 
 #install dependent programs
 echo "intalling tcpdump"
-sudo apt-get install tcpdump >> /dev/null
+sudo apt-get install tcpdump -qq -y >> /dev/null
 
 
 #moving files, creating folders and setting API key (mac address)
 echo "Installing files and systemd service"
 sudo mkdir $ISTALLDIR/PiScan
-sudo mkdir $ISTALLDIR/PiScan/info $ISTALLDIR/PiScan/logs $ISTALLDIR/PiScan/data
-sudo mkdir $ISTALLDIR/PiScan/bin $ISTALLDIR/PiScan/bin/scripts #$ISTALLDIR/PiScan/bin/exec
+sudo mkdir $ISTALLDIR/PiScan/info /tmp/PiScan /tmp/PiScan/logs $ISTALLDIR/PiScan/scripts
 
-sudo cp $CDIR/scripts/*.sh $ISTALLDIR/PiScan/bin/scripts/
+sudo cp $CDIR/scripts/*.sh $ISTALLDIR/PiScan/scripts/
 
+#HOSTNAME=$(ifconfig -a | awk '/^[a-z]/ { iface=$1; mac=$NF; next } /inet addr:/ { print iface, mac }')
 #touch $ISTALLDIR/PiScan/info/API.key
 #echo "$hostname" > $ISTALLDIR/info/API.key
-
 #g++ $CDIR/c++/hasher.cpp -o $ISTALLDIR/PiScan/bin/exec
 
 
@@ -38,13 +37,6 @@ sudo systemctl daemon-reload
 sudo systemctl start tcpdumpsetup.service
 sudo systemctl start tcpdumpchanhop.service
 sudo systemctl start tcpdump.service
-
-#checking if service has started
-`pgrep tcpdumpsetup >/dev/null 2>&1`
-STATS=$(echo $?)
-if [[  $STATS == 1  ]]; then
-    echo "Services failed to start"
-fi
 
 echo "Install finished"
 read -p "Remove pre-installation files? (y/n)" answer

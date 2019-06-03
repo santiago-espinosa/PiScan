@@ -10,7 +10,10 @@ Contains all scripts in this structure:
   * tcpdumpchanhop.sh       |     Hops channels of wlan0 for tcpdump
   * tcpdumpsetup.sh         |     Sets up wlan0 interface to monitor mode and creates folders for scan session (format: "day{#}")
 
+### :file_folder: **/temp/PiScan**   |   contains all temporary files
+    * :file_folder: **/temp/PiScan/logs**
+
 ### :file_folder: **System service dir (must be /lib/systemd/system/)**   |   contains systemd description files
-  * tcpdump.service             |   runs runtcpdump.sh continuously
-  * tcpdumpchanhop.service      |   runs tcpdumpchanhop.sh continuously
-  * tcpdumpsetup.service        |   runs tcpdumpsetup.sh once
+    * tcpdump.service             |   runs runtcpdump.sh continuously
+    * tcpdumpchanhop.service      |   runs tcpdumpchanhop.sh continuously
+    * tcpdumpsetup.service        |   runs tcpdumpsetup.sh once
