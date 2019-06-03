@@ -17,4 +17,5 @@ install :
 	@echo "Install dir: $INSTALLDIR/PiScan"
 	@echo "Current dir: $CDIR/"
 	@read -p "Press Enter to continue or Ctrl-C to cancel. Different install directories are not yet supported."
+	@chmod +x install.sh
 	sudo ./install.sh $INSTALLDIR $CDIR
