@@ -9,13 +9,3 @@ if [[ "$D" == *"managed"* ]]; then
     sudo iw wlan0 set monitor control;
     sudo ip link set wlan0 up;
 fi
-
-#Create a folder for this boot session
-rootfolder=/usr/bin/piScan/logs/day/
-i=0
-while [[ -e $rootfolder$i ]] ; do
-    let i++
-done
-folder=$rootfolder$i
-
-mkdir $folder

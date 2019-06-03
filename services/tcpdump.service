@@ -5,7 +5,7 @@ After=tcpdumpsetup.service tcpdumpchanhop.service
 [Service]
 TimeoutStartSec=infinity
 
-ExecStart=/usr/local/bin/PiScan/runtcpdump.sh
+ExecStart=/usr/bin/PiScan/runtcpdump.sh
 
 Restart=always
 RestartSec=0
