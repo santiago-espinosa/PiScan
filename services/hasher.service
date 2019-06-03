@@ -1,0 +1,14 @@
+[Unit]
+Description=Runs hasher
+After=tcpdumpsetup.service tcpdumpchanhop.service
+
+[Service]
+TimeoutStartSec=infinity
+
+ExecStart=/usr/bin/PiScan/hasher.sh
+
+Restart=always
+RestartSec=0
+
+[Install]
+WantedBy=multi-user.target
