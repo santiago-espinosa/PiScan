@@ -1,6 +1,6 @@
 #/!bin/bash
-ISTALLDIR=$1
-CDIR=$2
+ISTALLDIR="/usr/bin"
+CDIR=$(pwd)
 
 if [ ! -w /etc/init.d ]; then echo "Make must be run as root in order to install as system services."; exit -1; fi
 
