@@ -15,5 +15,5 @@ show_spinner()
   printf " \r"
 }
 
-("sudo $@") &
+("$@") &
 show_spinner "$!"

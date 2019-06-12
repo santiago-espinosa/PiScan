@@ -22,8 +22,8 @@ echo "Installing files and systemd service"
 sudo mkdir -p $INSTALLDIR/PiScan
 sudo mkdir -p $INSTALLDIR/PiScan/info $INSTALLDIR/PiScan/data /tmp/PiScan /tmp/PiScan/logs $INSTALLDIR/PiScan/bash
 echo "  -create folders done"
-sudo cp $CDIR/bash/* $INSTALLDIR/PiScan/bash/
-sudo cp $CDIR/services/* /lib/systemd/system/
+sudo cp $CDIR/bash/*.sh $INSTALLDIR/PiScan/bash/
+sudo cp $CDIR/services/*.service /lib/systemd/system/
 echo "  -copy scripts done"
 
 echo "Starting services"
