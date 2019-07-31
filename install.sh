@@ -1,6 +1,5 @@
 #/!bin/bash
-INSTALLDIR="/usr/bin"
-CDIR=$(pwd)
+
 if [ ! -w /etc/init.d ]; then
     echo "Script must be run as root in order to install programs as system services."
     exit -1
@@ -11,29 +10,28 @@ echo "  -update done"
 sudo ./spinner.sh apt-get upgrade -qq -y
 echo "  -upgrade done"
 
-echo "Making sure scripts are executable"
-sudo chmod u+x $CDIR/bash/*
-
 echo "intalling dependent programs"
 sudo ./spinner.sh apt-get install tcpdump -qq -y
 echo "  -tcpdump install done"
 
+echo "Making sure scripts are executable"
+sudo chmod u+x bash/*.sh
+
 echo "Installing files and systemd service"
-sudo mkdir -p $INSTALLDIR/PiScan
-sudo mkdir -p $INSTALLDIR/PiScan/info $INSTALLDIR/PiScan/data /tmp/PiScan /tmp/PiScan/logs $INSTALLDIR/PiScan/bash
-echo "  -create folders done"
-sudo cp $CDIR/bash/*.sh $INSTALLDIR/PiScan/bash/
-sudo cp $CDIR/services/*.service /lib/systemd/system/
-echo "  -copy scripts done"
+sudo mkdir -p ~/piscan
+sudo mkdir -p ~/piscan/info ~/piscan/data /tmp/piscan /tmp/piscan/logs ~/piscan/bash
+echo "  - folders created"
+sudo cp bash/*.sh ~/piscan/bash/
+sudo cp services/*.service /lib/systemd/system/
 
 echo "Starting services"
 sudo systemctl daemon-reload >> /dev/null
 sudo systemctl start tcpdumpsetup.service >> /dev/null
-echo "  -setup.sh service running"
+echo "  - setup.sh service running"
 sudo systemctl start tcpdumpchanhop.service >> /dev/null
-echo "  -chanhop.sh service running"
+echo "  - chanhop.sh service running"
 sudo systemctl start tcpdump.service >> /dev/null
-echo " -tcpdump.sh service running"
+echo " - tcpdump.sh service running"
 
 echo "Install finished"
 
