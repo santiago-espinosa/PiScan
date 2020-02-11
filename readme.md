@@ -8,7 +8,7 @@
 piscan
 │   
 ├───install.sh
-│
+│   
 ├───readme.md
 │
 ├───spinner.sh
