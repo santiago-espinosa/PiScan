@@ -3,7 +3,7 @@ Description=Runs piscan service
 
 [Service]
 type=oneshot
-ExecStart=~/piscan/scripts/runner.sh
+ExecStart=/home/pi/piscan/scripts/runner.sh
 
 Restart=always
 RestartSec=0
