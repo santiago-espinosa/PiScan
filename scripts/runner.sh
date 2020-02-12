@@ -10,7 +10,9 @@ fi
 for i in {1..3}
 do
     this_round=$(date +%s%N | cut -b1-13)
+    echo "Running tcpdump"
     $tcp_dump > $(pwd)/piscan/mac_addresses/$this_round
-    nohup bash hasher.sh $this_round
+    echo "Hashing results"
+    nohup bash hasher.sh $this_round 2> /dev/null &
     sleep 5
 done
