@@ -1,18 +1,15 @@
 #!/bin/bash
-tcp_dump=("sudo nohup tcpdump -i wlan0 -G 15 -e -s 0 -l type mgt subtype probe-req or type data subtype null or type mgt subtype assoc-req or type mgt subtype reassoc-req | grep -P --line-buffered -o '(?<=SA:)(([a-f]|[0-9]){2}:){5}([a-f]|[0-9]){2}'")
 
-#check if setup has been run already
-if [ ! -d "$(pwd)/piscan" ]; then
-    echo "Folder not found. Running setup."
-    bash setup.sh
-fi
+bash setup.sh || { echo "Setup failed. Exiting."; exit 1 }
+echo "Starting channel hop"
+sudo channel_hop.sh >/dev/null 2>&1
+
+folder=$(ls -d /home/pi/logs/*/ | tail -1)
 
 for i in {1..3}
 do
     this_round=$(date +%s%N | cut -b1-13)
     echo "Running tcpdump"
-    $tcp_dump > $(pwd)/piscan/mac_addresses/$this_round
-    echo "Hashing results"
-    nohup bash hasher.sh $this_round 2> /dev/null &
+    sudo tcpdump -i mon0 -e -s 0 -l type mgt subtype assoc-req or type mgt subtype reassoc-req or type data subtype null | grep -P --line-buffered -o '(?<=SA:)(([a-f]|[0-9]){2}:){5}([a-f]|[0-9]){2}' | awk -Winteractive -v folder=$folder '{system("bash hasher.sh "folder$0)}'
     sleep 5
 done

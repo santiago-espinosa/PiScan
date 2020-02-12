@@ -2,11 +2,9 @@
 Description=Runs piscan service
 
 [Service]
-type=oneshot
+Type=oneshot
 ExecStart=/home/pi/piscan/scripts/runner.sh
 
-Restart=always
-RestartSec=0
 
 [Install]
 WantedBy=multi-user.target
