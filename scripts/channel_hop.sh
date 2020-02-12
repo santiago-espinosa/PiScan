@@ -1,7 +1,7 @@
 #!/bin/bash
 time=$(date +%s%N)
 
-echo "$time\t Started Channel hop loop\t (tcpdump_channel_hop.sh)"
+echo -e "$time\t Started Channel hop loop\t (tcpdump_channel_hop.sh)"
 while :
 do
     for channel in {1..14}

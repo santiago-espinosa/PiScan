@@ -1,8 +1,8 @@
 #!/bin/bash
-time=$(date +%s%N)
+time=$(date +%F)
 mon_mode=$(iw dev | grep 'managed')
 
-echo "$time\t Started TCPDump setup"
+echo-e "$time\t Started TCPDump setup"
 
 if [[ "$mon_mode" == *"managed"* ]]; then
     sudo ip link set wlan0 down;
@@ -12,5 +12,5 @@ else
     echo "wlan0 already in monitor mode"
 fi
 
-echo "creating folders"
-mkdir -p ~/piscan/mac_addresses ~/piscan/output
+echo "Creating folders"
+mkdir -p $(pwd)/piscan/mac_addresses $(pwd)/piscan/output
