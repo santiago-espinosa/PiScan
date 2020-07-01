@@ -1,0 +1,10 @@
+[Unit]
+Description=Runs piscan service
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/piscan/scripts/runner.sh
+
+
+[Install]
+WantedBy=multi-user.target

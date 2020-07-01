@@ -2,6 +2,43 @@
 
 ## Current structure when installed:
 
+
+
+```
+piscan
+│   
+├───install.sh
+│   
+├───readme.md
+│
+├───spinner.sh
+│
+├───bash
+│   ├───hasher.sh
+│   │
+│   ├───runtcpdump.sh
+│   │
+│   ├───tcpdumpchanhop.sh
+│   │
+│   └───tcpdumpsetup.sh
+│
+└───services
+    ├───hasher.service
+    │
+    ├───tcpchanhop.service
+    │
+    ├───tcpdump.service
+    │
+    └───tcpdumpsetup.service
+
+```
+
+
+
+
+
+
+
 ### :file_folder: **install Dir (/usr/bin/ by default)**
 Contains all scripts in this structure:
 
